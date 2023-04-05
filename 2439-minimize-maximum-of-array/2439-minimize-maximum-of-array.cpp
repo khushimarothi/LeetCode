@@ -12,8 +12,7 @@ public:
             int a = prefix/(i+1);
             if(a>= num){
                 if(prefix%(i+1)){
-                    num = a+1;
-                    
+                    num = a+1;    
                 }
                 else{
                     num=a;
