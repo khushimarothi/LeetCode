@@ -1,51 +1,41 @@
 class Solution {
 public:
-    vector<int> spiralOrder(vector<vector<int>>& matrix) {
-         
-        vector<int> result;
-    
-        if (matrix.empty()) return result;
-   
-        int m = matrix.size();
-        int n = matrix[0].size();
-        int i = 0, j = 0, k = 0;
-    
-        while (i < m && j < n) {
-
-            for (k = j; k < n; k++) {
-               result.push_back(matrix[i][k]);
-            }
+    vector<int> spiralOrder(vector<vector<int>>& matrix, int m=0) {
         
-            i++;
+        vector<int> ans;
         
-            for (k = i; k < m; k++) {
-               result.push_back(matrix[k][n - 1]);
-            }
+        int r = matrix.size();
+        int c=matrix[0].size();
         
-            n--;
+        int top=0, bot = r-1;
+        int left =0, right=c-1;
         
-            if (i < m) {
-
-           
-                for (k = n - 1; k >= j; k--) {
-                   result.push_back(matrix[m - 1][k]);
-               }
+        while(top<=bot && left<=right){
             
-                m--;
-             }
-       
-            if (j < n) {
-        
-             
-                for (k = m - 1; k >= i; k--) {
-                   result.push_back(matrix[k][j]);
+            for(int i=left; i<=right; ++i){
+                ans.push_back(matrix[top][i]);
+                
             }
+            top++;
             
-                j++;
-          }
-    }
-        
-    
-        return result;
+            for(int i = top;i<=bot;++i){
+                ans.push_back(matrix[i][right]);
+            }
+            right--;
+            
+            if(top<=bot){
+                for(int i= right;i>=left;--i){
+                    ans.push_back(matrix[bot][i]);
+                }
+                bot--;
+            }
+            if(left<=right){
+                for(int i=bot;i>=top;--i){
+                    ans.push_back(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+        return ans;
     }
 };
