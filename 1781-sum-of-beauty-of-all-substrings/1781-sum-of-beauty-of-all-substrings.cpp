@@ -1,23 +1,27 @@
 class Solution {
 public:
-
-    int beautySum(string s) {
-        int n=s.size(),ans=0,mn=500,mx=0;
-        
-        for(int i=0;i<n;i++){
-                map<char,int>mp;
+    int calc(vector<int> &v){
+        int most = -1;
+        int least = 1e9;
+        for(int i = 0; i < 26; i++){
+            most = max(most, v[i]);
             
-            for(int j=i;j<n;j++){
-                mp[s[j]]++;
-                for(auto& it:mp){
-                    mn=min(mn,it.second);
-                    mx=max(mx,it.second);
-                }
-                ans+=(mx-mn);
-                mn=500;mx=0;
+            if( v[i] >= 1){
+                least = min(least, v[i]);
             }
-            mp.clear();
         }
-    return ans;
+        return most - least;
+    }
+    int beautySum(string s) {
+        
+        int ans = 0;
+        for(int i = 0; i < s.size(); i++){
+            vector<int> v(26,0);
+            for(int j = i; j< s.size();j++){
+                v[s[j] - 'a']++;
+                ans = ans + calc(v);
+            }
+        }
+        return ans;
     }
 };
