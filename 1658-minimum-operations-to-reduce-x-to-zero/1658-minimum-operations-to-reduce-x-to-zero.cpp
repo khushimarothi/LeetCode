@@ -31,7 +31,10 @@ public:
             }
         }
         
-        return (cnt == INT_MAX) ? -1 : cnt;
+        if(cnt== INT_MAX)
+            return -1;
+        
+        return cnt;
         
     }
 };
