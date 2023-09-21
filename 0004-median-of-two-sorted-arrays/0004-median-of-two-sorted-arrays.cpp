@@ -5,27 +5,32 @@ public:
         int m = nums2.size();
         
         vector<int> v;
-        for(int i = 0; i < n; i++){
-            v.push_back(nums1[i]);
-        }
         
-        for(int i = 0; i < m; i++){
-            v.push_back(nums2[i]);
-        }
-        sort(v.begin(), v.end());
+        
         int t = m + n;
         int a = 0,b = 0;
         double ans;
         
+        while( a<n && b < m){
+            if(nums1[a] < nums2[b])
+               v.push_back(nums1[a++]);
+            else
+                v.push_back(nums2[b++]);
+        }
+        
+        while(a < n) {
+            v.push_back(nums1[a++]);
+        }
+        while(b < m){
+            v.push_back(nums2[b++]);
+        }
+        
         if(t%2 == 1){
-            a = (double) t/2;
-            ans = v[a];
+            return v[t/2];
         }
-        else{
-            a = (double)t/2;
-            b = (double)(t/2) - 1;
-            ans = (double)(v[a] + v[b])/2;
-        }
+        
+        ans = ((double)v[t/2] + (double)v[t/2 - 1])/2.0;
+        
         return ans;
         
     }
