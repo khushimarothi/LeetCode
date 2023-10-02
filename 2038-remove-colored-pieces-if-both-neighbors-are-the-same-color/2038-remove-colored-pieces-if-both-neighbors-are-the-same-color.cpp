@@ -7,18 +7,17 @@ public:
         int i = 1, j = 0, k = 0;
         while(i < n-1){
             
-            if(colors[i - 1] == colors[i] && colors[i] == colors[i +1]){
-                if(colors[i] == 'A'){
-                    j++;
-                }
-                else{
-                    k++;
-                }
+            if(colors[i - 1] == colors[i] && colors[i] == colors[i +1] && colors[i] == 'A'){
+                j++;
+            }
+            
+            else if(colors[i - 1] == colors[i] && colors[i] == colors[i +1] && colors[i] == 'B') {
+                k++;
             }
             i++;
         }
         
-        if(j - k >= 1){
+        if(j > k){
             return true;
         }
         
