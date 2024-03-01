@@ -12,7 +12,6 @@ public:
             ans += '0';
         }
         
-        
         for(int i = 0; i < cnt - 1; i++){
             ans[i] = '1';
         }
